@@ -1,1 +1,1 @@
-przyk³ady z ksi¹¿ki: JavaScript Æwiczenia Praktyczne - Marcin Lis
+przykÅ‚ady z ksiÄ…Å¼ki: JavaScript Ä†wiczenia Praktyczne - Marcin Lis
