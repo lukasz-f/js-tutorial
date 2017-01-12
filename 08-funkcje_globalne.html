@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>Obiekty i funkcje globalne - Funkcje globalne</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			/* Funkcje globalne
+				decodeURI(URI) Dekoduje ciąg znaków URI zakodowany przez funkcję encodeURI.
+				decodeURIComponent(URI) Dekoduje ciąg znaków URI zakodowany przez funkcję encodeURIComponent.
+				encodeURI(str) Przekształca ciąg str w taki sposób, aby był poprawnym identyfikatorem zasobów (URI, ang. Uniform Resource Identifier).
+						Kodowanie odbywa się poprzez zamianę wybranych znaków na odpowiadające im sekwencje zgodne z kodowaniem UTF-8. 
+						Nie są kodowane znaki :, /, ;, ?.
+				encodeURIComponent(str) Przekształca ciąg str w taki sposób, aby był poprawnym identyfikatorem zasobów.
+						Kodowanie odbywa się poprzez zamianę wybranych znaków na odpowiadające im sekwencje
+						zgodne z kodowaniem UTF-8. W przeciwieństwie do metody encodeURI, kodowane są również znaki :, /, ;, ?.
+				escape(str) Zwraca przetworzony ciąg str, w którym wszystkie znaki inne niż znaki alfabetu łacińskiego 
+						oraz znaki @, *, -, _, +, ., / zostały zamienione na sekwencje znaków specjalnych. Dla znaków o kodach
+						poniżej 256 sekwencja specjalna ma postać %xx, gdzie xx to heksadecymalny kod znaku,
+						natomiast dla znaków o kodach powyżej 255 sekwencja ma postać %unnnn, gdzie nnnn to kod znaku w formacie Unicode.
+				eval(wyrażenie) Jeżeli parametr wyrażenie jest ciągiem znaków tworzącym wyrażenie, zwraca jego obliczoną
+						wartość, jeżeli natomiast wyrażenie jest instrukcją lub ciągiem instrukcji, są one wykonywane.
+				isFinite(wartość) Zwraca wartość true, jeżeli parametr wartość przedstawia wartość skończoną, lub false w przeciwnym przypadku.
+				isNaN(wartość) Zwraca wartość false, jeżeli parametr wartość przedstawia wartość liczbową, lub true w przeciwnym przypadku.
+				parseFloat(str) Przetwarza ciąg znaków podany jako argument str na wartość rzeczywistą. Jeżeli ciąg str
+						nie będzie reprezentował prawidłowej wartości rzeczywistej, funkcja zwróci wartość NaN.
+				parseInt(str[, podstawa]) Przetwarza ciąg znaków podany jako argument str na wartość całkowitą. Opcjonalny argument
+						podstawa pozwala na ustalenie podstawy systemu liczbowego.
+					- Jeżeli ciąg str rozpoczyna się od znaków 0x, będzie traktowany jako wartość szesnastkowa.
+					- Jeżeli ciąg str rozpoczyna się od znaku 0, będzie traktowany jako wartość ósemkowa.
+					- Jeżeli nie zachodzą przypadki 1. i 2., ciąg str będzie traktowany jako wartość dziesiętna.
+					- Jeżeli ciąg str nie będzie reprezentował prawidłowej wartości całkowitej lub wartość argumentu podstawa będzie spoza dopuszczalnego
+							zakresu, funkcja zwróci wartość NaN, oznaczającą: to nie jest liczba (z ang. Not a Number).
+				unescape(str) Odwrotność funkcji escape. Zwraca ciąg, w którym wszystkie sekwencje specjalne zostały zamienione na odpowiadające im znaki.
+			*/
+		</script>
+		<script type="text/javascript">
+			/* Działanie funkcji eval */
+			function func() {
+				document.write("Treść generowana przez funkcję func.<br/>");
+			}
+			var wynik = eval("(6+7*2)/5");
+			document.write("Wynik przetwarza wyrażenia (6+7*2)/5=" + wynik + "<br/>");
+			eval("func()");
+		</script>
+		<script type="text/javascript">
+			/* Argumenty i funkcja eval */
+			function dodaj(arg1, arg2)
+			{
+				return arg1 + arg2;
+			}
+			var val1 = 10, val2 = 20;
+			var str = "dodaj(" + val1 + "," + val2 + ")";
+			var wynik = eval(str);
+			document.write("Wynik przetwarzania wyrażenia " + str + " to " + wynik + "<br/>");
+		</script>
+		<script type="text/javascript">
+			/* Konwersja ciągu na liczbę całkowitą */
+			var ciag1 = "12";
+			var ciag2 = "8";
+			var wynik = ciag1 + ciag2;
+			document.write("Przed konwersją wynikiem dodawania ciag1 + ciag2 jest " + wynik + ".<br/>");
+			
+			ciag1 = parseInt(ciag1);
+			ciag2 = parseInt(ciag2);
+			wynik = ciag1 + ciag2;
+			document.write("Po konwersji wynikiem dodawania ciag1 + ciag2 jest " + wynik + ".<br />");
+		</script>
+		<script type="text/javascript">
+			/* Konwersja ciągu na liczbę rzeczywistą */
+			var ciag1 = "12.8";
+			var ciag2 = "8.2";
+			var wynik = ciag1 + ciag2;
+			document.write("Przed konwersją wynikiem dodawania ciag1 + ciag2 jest " + wynik + ".<br/>");
+			
+			wynik = parseFloat(ciag1) + parseFloat(ciag2); 
+			document.write("Po konwersji wynikiem dodawania ciag1 + ciag2 jest " + wynik + ".<br />");
+		</script>
+		<script type="text/javascript">
+			/* Badanie wyniku konwersji */
+			var tab = ["123", "abc", "32labc", "abc321", "13.36"];
+			for (var i = 0; i < tab.length; ++i) {
+				var val = parseInt(tab[i]);
+				if (isNaN(val)) {
+					document.write("Ciąg \"" + tab[i] + "\" nie jest liczbą. ");
+				} else {
+					document.write("Ciąg \"" + tab[i] + "\" jest liczbą. ");
+				}
+				document.write("Wynik konwersji: " + val + "<br />");
+			}
+		</script>
+	</body>
+</html>

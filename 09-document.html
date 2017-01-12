@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>Współpraca z przeglądarką - Obiekt document</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			/* Wybrane właściwości obiektu document
+				anchors Tablica (kolekcja) zawierająca obiekty odnośników znajdujących się w dokumencie.
+				body Obiekt zawierający treść dokumentu HTML. 
+				characterSet Ciąg określający kodowanie znaków w dokumencie.
+				compatMode Ciąg określający tryb kompatybilności dokumentu ze standardami HTML.
+				cookie Ciąg znaków zawierający cookies danego dokumentu.
+				docType Obiekt określający typ dokumentu (DTD).
+				domain Nazwa domenowa serwera, z którego pochodzi dokument.
+				embeds Tablica (kolekcja) zawierająca odniesienia do znajdujących się w dokumencie obiektów zagnieżdżonych.
+				forms Tablica (kolekcja) zawierająca odniesienia do znajdujących się w dokumencie obiektów formularzy.
+				head Obiekt zawierający nagłówek strony.
+				images Tablica (kolekcja) zawierająca odniesienia do znajdujących się w dokumencie obrazów.
+				lastModified Zawiera datę i czas ostatniej modyfikacji dokumentu.
+				links Tablica (kolekcja) zawierająca odniesienia do znajdujących się w dokumencie obiektów typu Link (odnośników).
+				location Obiekt przechowujący URL bieżącego dokumentu.
+				plugins Tablica (kolekcja) zawierająca odniesienia do znajdujących się w dokumencie obiektów typu Plugin.
+				referrer Zawiera URL dokumentu, z którego nastąpiło odwołanie do bieżącego dokumentu.
+				styleSheets Zawiera wszystkie style zdefiniowane w dokumencie.
+				title Zawiera tytuł dokumentu zdefiniowany za pomocą znacznika <title>.
+				URL Ciąg zawierający URL bieżącego dokumentu.
+			*/
+		</script>
+		<script type="text/javascript">
+			/* Informacje o bieżącym dokumencie */
+			document.write('Tytuł: ' + document.title + '<br />');
+			document.write('Data ostatniej modyfikacji: ' + document.lastModified + '<br />');
+			document.write('Liczba obrazków: ' + document.images.length + '<br />');
+			document.write('Liczba odnośników: ' + document.links.length + '<br />');
+			document.write('Liczba formularzy: ' + document.forms.length + '<br />');
+			document.write('Tryb kompatybilności: ' + document.compatMode + '<br />');
+		</script>
+		<script type="text/javascript">
+			/* Zegar na pasku tytułu */
+			function zmienTytul() {
+				var data = new Date();
+				var godziny = data.getHours();
+				var minuty = data.getMinutes();
+				var sekundy = data.getSeconds();
+				var czas = godziny + ((minuty < 10) ? ':0' : ':') + minuty + ((sekundy < 10) ? ':0' : ':') + sekundy;
+				document.title = czas;
+			}
+			window.setInterval(zmienTytul, 1000);
+		</script>
+	</body>
+</html>

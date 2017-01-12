@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>Elementy witryny - model DOM</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			/* 	Węzły (nodes):
+					węzły związane z elementami (element nodes)
+					węzły tekstowe (text nodes)
+					węzeł główny (root node) to obiekt document
+				Typy węzłów (nodeType):
+					1 — węzeł zawierający element HTML
+					2 — węzeł zawierający atrybuty
+					3 — węzeł z zawartością tekstową
+			*/
+		</script>
+		<script type="text/javascript">
+			/* Wybrane właściwości węzłów DOM
+				attributes Kolekcja atrybutów węzła.
+				childNodes Lista węzłów potomnych.
+				className Klasa CSS przypisana do elementu
+				firstChild Pierwszy węzeł potomny.
+				innerHTML Zawartość węzła wraz z węzłami potomnymi
+				lastChild Ostatni węzeł potomny.
+				nextSibling Kolejny węzeł na tym samym poziomie hierarchii.
+				nodeName Nazwa węzła.
+				nodeType Typ węzła.
+				nodeValue Wartość węzła.
+				parentNode Węzeł nadrzędny.
+				previousSibling Poprzedni węzeł na tym samym poziomie hierarchii.
+				style style CSS przypisane do elementu
+				textContent Tekstowa zawartość węzła wraz z węzłami potomnymi.
+			*/
+		</script>
+		<script type="text/javascript">
+			/* Wybrane metody węzłów DOM
+				appendChild() Dodaje nowy węzeł potomny.
+				cloneNode() Wykonuje kopię węzła.
+				hasAttributes() Zwraca true, jeżeli węzeł ma jakieś atrybuty.
+				hasChildNodes() Zwraca true, jeżeli węzeł posiada węzły potomne.
+				insertBefore() Wstawia nowy węzeł przed wskazanym węzłem potomnym.
+				removeChild() Usuwa wskazany węzeł potomny.
+				replaceChild() Zamienia wskazany węzeł potomny na nowy, przekazany w postaci argumentu.
+			*/
+		</script>
+		<script type="text/javascript">
+			/* Wybrane metody obiektu document
+				createElement() Tworzy nowy węzeł.
+				createTextNode() Tworzy nowy węzeł tekstowy.
+				getElementById() Pobiera element o wskazanym identyfikatorze (wartości atrybutu id znacznika HTML).
+				getElementsByTagName() Pobiera wszystkie elementy odpowiadające wskazanemu znacznikowi HTML.
+			*/
+		</script>
+		<div id="warstwa1">0</div>
+		<script type="text/javascript">
+			/* Wyświetla na stronie kolejne wartości całkowite */
+			var i = 1;
+			var timerId = setInterval(zmienTekst, 250);
+			function zmienTekst() {
+				var div = document.getElementById('warstwa1');
+				div.innerHTML = i;
+				if (++i > 10) {
+					clearInterval(timerId);
+				}
+			}
+		</script>
+		<div id="czasDiv">00:00:00</div>
+		<script type="text/javascript">
+			/* Wyświetla zegar na stronie www */
+			function aktualnyCzas(node) {
+				var data = new Date();
+				var godziny = data.getHours();
+				var minuty = data.getMinutes();
+				var sekundy = data.getSeconds();
+				var czas = godziny + ((minuty < 10) ? ':0' : ':') + minuty + ((sekundy < 10) ? ':0' : ':') + sekundy;
+				var div = document.getElementById(node);
+				div.innerHTML = czas;
+				setTimeout(function() { aktualnyCzas(node); }, 1000);
+			}
+			aktualnyCzas('czasDiv');
+		</script>
+		<div id="infoDiv"></div>
+		<img id="okladka" src="okladka.jpg" alt="Tekstowy odpowiednik obrazu" />
+		<script type="text/javascript">
+			/* Zmienia wartość atrybutu 'alt' i dodaje atrybut 'title' do elementu 'img' */
+			function zmienAtrybuty() {
+				var img = document.getElementById('okladka');
+				var infoDiv = document.getElementById('infoDiv');
+				var altOld = img.getAttribute('alt');
+				img.setAttribute('alt', 'Okładka książki Dynamiczny HTML. 101 praktycznych skryptów');
+				img.setAttribute('title', 'To jest tytuł obrazka');
+				var altNew = img.getAttribute('alt');
+				
+				var str = 'Bieżąca wartość atrybutu alt (' + altOld + ') ';
+				str += 'została zmieniona na "' + altNew + '". ';
+				str += 'Dodany został także atrybut title o wartości "' + img.getAttribute('title') + '".';
+				infoDiv.innerHTML = str;
+			}
+			zmienAtrybuty();
+		</script>
+		<p id="akapitTekstowy" style="font-weight:normal">To jest tekstowy akapit</p>
+		<script type="text/javascript">
+			/* Zmienia styl */
+			function zmienStyl() {
+				var akapit = document.getElementById('akapitTekstowy');
+				if (akapit.style.fontWeight == 'normal') {
+					akapit.style.fontWeight = 'bold';
+				} else {
+					akapit.style.fontWeight = 'normal';
+				}
+				setTimeout(zmienStyl, 2000);
+			}
+			zmienStyl();
+		</script>
+		<div id="warstwaInfo"></div>
+		<div id="warstwaDanych">
+			<p id="pt1">Treść akapitu tekstowego.</p>
+		</div>
+		<script type="text/javascript">
+			/* Dostęp do węzłów potomnych */
+			var div = document.getElementById('warstwaDanych');
+			var warstwaInfo = document.getElementById('warstwaInfo');
+			var str = '';
+			for (var i = 0; i < div.childNodes.length; ++i) {
+				str += 'węzeł nr <b>' + i + '</b> (typ: <b>' + div.childNodes[i].nodeType + '</b>, ';
+				str += 'nazwa: <b>' + div.childNodes[i].nodeName + '</b>)<br />';
+			}
+			warstwaInfo.innerHTML = str;
+		</script>
+		<div id="div1"></div>
+		<script type="text/javascript">
+			/* Dynamicznie dodaje elementy witryny */
+			var str = 'Treść akapitu tekstowego utworzonego dynamicznie';
+			var div = document.getElementById('div1');
+			var p = document.createElement('p');
+			var pText = document.createTextNode(str);
+			p.appendChild(pText);
+			div.appendChild(p);
+		</script>
+	</body>
+</html>

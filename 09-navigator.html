@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>Współpraca z przeglądarką - Obiekt navigator</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			/* Wybrane właściwości obiektu Navigator
+				appCodeName Nazwa kodowa przeglądarki.
+				appName Oficjalna nazwa przeglądarki.
+				appVersion Wersja kodowa przeglądarki.
+				appMinorVersion Podwersja przeglądarki (Internet Explorer i Opera).
+				cookieEnabled Określa, czy w przeglądarce jest włączona obsługa cookies (true — tak, false — nie).
+				cpuClass Rodzina procesorów urządzenia, na którym jest uruchomiona przeglądarka (Internet Explorer).
+				language Kod języka przeglądarki.
+				mimetypes Tablica zawierająca listę typów MIME obsługiwanych przez przeglądarkę. 
+						W niektórych przypadkach ta właściwość jest wartością pustą.
+				onLine Określa, czy przeglądarka pracuje w trybie online.
+				oscpu Określa system operacyjny, na którym jest uruchomiona przeglądarka (Firefox).
+				platform Określa platformę systemową, dla której jest przeznaczona przeglądarka.
+				plugins Tablica zawierająca odniesienia do rozszerzeń zainstalowanych w przeglądarce.
+				product Nazwa produktowa przeglądarki, np. Gecko (Firefox).
+				productSub Wersja produktowa przeglądarki (Firefox).
+				systemLanguage Język sytemu operacyjnego, na którym jest uruchomiona przeglądarka (Internet Explorer).
+				userAgent Ciąg wysyłany przez przeglądarkę do serwera jako nagłówek HTTP_USER_AGENT. 
+						Z reguły pozwala na dokładną identyfikację przeglądarki.
+				userLanguage Język użytkownika; z reguły wersja językowa przeglądarki (Internet Explorer).
+				vendor Dostawca (producent) przeglądarki.
+				vendorSub Numer produktu według producenta (np. 5.1, 6.0).
+			*/
+		</script>
+		<script type="text/javascript">
+			/* Wyświetla właściwości obiektu navigator */
+			for (var indeks in navigator) {
+				if (typeof navigator[indeks] != 'function') {
+					document.write(indeks + ': <b>' + navigator[indeks] + '</b><br />');
+				}
+			}
+		</script>
+		<script type="text/javascript">
+			/* Rozpoznawanie typu przeglądarki */
+			var agent = navigator.userAgent.toLowerCase();
+			var nazwa = 'nieznany';
+			if (agent.indexOf('firefox') != -1) {
+				nazwa = 'Firefox';
+			} else if (agent.indexOf('opera') != -1) {
+				nazwa = 'Opera';
+			} else if (agent.indexOf('chrome') != -1) {
+				nazwa = 'Chrome';
+			} else if (agent.indexOf('msie') != -1) {
+				nazwa = 'Internet Explorer';
+			}
+			document.write('Twoja przeglądarka to: ' + nazwa);
+		</script>
+	</body>
+</html>

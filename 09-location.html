@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>Współpraca z przeglądarką - Obiekt location</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			/* Wybrane właściwości obiektu location
+				hash Część adresu URL znajdująca się za znakiem #.
+				host Część adresu URL zawierająca nazwę hosta oraz numer portu.
+				hostname Część adresu URL zawierająca nazwę hosta.
+				href Pełny adres URL.
+				pathname Część adresu URL zawierająca ścieżkę dostępu i nazwę zasobu (pliku).
+				port Część adresu URL zawierająca numer portu.
+				protocol Część adresu URL zawierająca nazwę protokołu (np. http, ftp).
+				search Część adresu URL znajdująca się za znakiem zapytania.
+			*/
+		</script>
+		<script type="text/javascript">
+			/* Właściwości obiektu location */
+			for (var indeks in location) {
+				if (typeof location[indeks] != 'function') {
+					document.write(indeks + ': <b>' + location[indeks] + '</b><br />');
+				}
+			}
+		</script>
+		<script type="text/javascript">
+			/* Wybrane metody obiektu location
+				assign(url) Wczytuje dokument o adresie wskazanym przez argument url.
+				reload(force) Wymusza ponowne wczytanie bieżącej strony. Jeśli obecny jest argument force 
+						i ma on wartość true, witryna jest ponownie ładowana z serwera. 
+						W pozostałych przypadkach przeglądarka może wczytać ją z pamięci cache.
+				replace(url) Zastępuje bieżący dokument przez wczytany spod adresu wskazanego przez argument url.
+						W przeciwieństwie do metody assign po zastosowaniu replace bieżąca strona nie zostanie
+						zapamiętana w historii przeglądanych witryn.
+				toString() Przekształca zawartość obiektu location w ciąg znaków reprezentujący przechowywany przezeń adres URL.
+			*/
+		</script>
+		<script type="text/javascript">
+			/* Przekierowanie na nowy adres po zadanym czasie */
+			document.write('<p>Witryna została przeniesiona pod nowy adres.</p>');
+			document.write('<p>Za 10 sekund nastąpi przekierowanie.</p>');
+			setTimeout(function zmienStrone() {
+					location.replace('http://helion.pl/ksiazki/twwspk.htm');
+				}, 10000);
+		</script>
+	</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>Wyjątki</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			/* Zgłaszanie wyjątków. W instrukcji throw można zastosować jakiekolwiek wyrażenie, 
+				którego efektem działania będzie wartość dowolnego z typów danych, np. ciąg znaków, liczba, true, false, itp.
+			*/
+			throw "To jest wyjątek!";
+		</script>
+		<script type="text/javascript">
+			/* Zalecane jest stosowanie predefiniowanych typów związanych z obsługą błędów:
+				Error - podstawowy typ związany z obsługą błędów
+				EvalError — nieprawidłowe użycia funkcji eval, typ zachowany jedynie ze względu na kompatybilność z wcześniejszymi wersjami JavaScriptu.
+				RangeError — wartość numeryczna przekracza dopuszczalny zakres.
+				ReferenceError — nieprawidłowe odniesienie do obiektu.
+				SyntaxError — błąd składniowy (syntaktyczny).
+				TypeError — wartość ma inny typ niż oczekiwany. Może tak być przy próbie dostępu do właściwości o wartości null bądź undefined,
+					użycia operatora new i argumentu niebędącego konstruktorem, próbie wywołania nieistniejącej metody obiektu itp.
+				URIError — zgłaszany przez metody kodujące bądź dekodujące adresy URI, gdy wykryte zostaną nieprawidłowo sformatowane dane.
+			*/
+			throw new Error("To jest obiektowy wyjątek!");
+		</script>
+		<script type="text/javascript">
+			/* Przechwytywanie wyjątków 
+				try{
+					// instrukcje mogące spowodować wyjątek
+				}
+				catch (identyfikatorWyjątku){
+					// kod obsługi wyjątku
+				}
+			*/
+			try {
+				document.write("Blok try przed wygenerowaniem wyjątku<br />");
+				throw Error("Błąd wygenerowany w celach testowych");
+				document.write("Blok try po wygenerowaniu wyjątku<br />");
+			}
+			catch(e) {
+				document.write("Wyjątek został przechwycony.<br />");
+				document.write("Nazwa wyjątku: " + e.name + "<br />");
+				document.write("Komunikat wyjątku: " + e.message + "<br />");
+			}
+			document.write("Wyjątek został przechwycony, więc skrypt nadal działa.<br />");
+		</script>
+		<script type="text/javascript">
+			/* Rzucanie i przechwytywanie wyjątków */
+			function podziel(arg1, arg2) {
+				if (arg2 == 0) {
+					throw new Error("Nie mogę dzielić przez zero!");
+				}
+				return arg1 / arg2;
+			}
+			try {
+				var wynik = podziel(1, 0);
+				document.write("1/0=" + wynik);
+			} catch(e) {
+				document.write("Wystąpił błąd: " + e.message);
+			}
+		</script>
+		<script type="text/javascript">
+			/* Ponowne zgłaszanie wyjątków */
+			try {
+				throw new Error("Błąd wygenerowany w celach testowych");
+			} catch(e) {
+				document.write("Wyjątek został przechwycony.<br />");
+				document.write("Nazwa wyjątku: " + e.name + "<br />");
+				document.write("Komunikat wyjątku: " + e.message + "<br />");
+				e.message = "Nie chcę obsługiwać tego wyjątku.";
+				throw e;
+			}
+			document.write("Ta instrukcja znajduje się za blokiem try...catch.<br />");
+		</script>
+		<script type="text/javascript">
+			/* Użycie bloku finally 
+				try{
+					// instrukcje mogące spowodować wyjątek
+				}
+				catch(identyfikator){
+					// instrukcje bloku catch
+				}
+				finally{
+					// instrukcje bloku finally
+				}
+			lub
+				try{
+					// instrukcje mogące spowodować wyjątek
+				}
+				finally{
+					// instrukcje bloku finally
+				}
+			*/
+			function podziel(arg1, arg2) {
+				if (arg2 == 0) {
+					throw new Error("Nie mogę dzielić przez zero!");
+				}
+				return arg1 / arg2;
+			}
+			try {
+				var wynik = podziel(12, 0);
+				document.write("12/0=" + wynik);
+			} finally {
+				document.write("Blok finally. Wartość zmiennej wynik = " + wynik);
+			}
+			document.write("Ta instrukcja znajduje się za blokiem try...finally");
+		</script>
+	</body>
+</html>

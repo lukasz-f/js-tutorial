@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>Zdarzenia</title>
+		<script type="text/javascript">
+			/* Oczekiwanie na drzewo DOM */
+			window.onload = function() {
+				var czerwonyKolor = 'red';
+				var infoDiv = document.getElementById('infoDiv');
+				var oryginalnyKolor = infoDiv.style.color;
+				infoDiv.innerHTML = 'Tekst warstwy wygenerowany przez skrypt';
+				infoDiv.ondblclick = function() {
+					if (this.style.color == oryginalnyKolor) {
+						this.style.color = czerwonyKolor;
+					} else {
+						this.style.color = oryginalnyKolor;
+					}
+				}
+			}
+		</script>
+		<script type="text/javascript">
+			/* Oczekiwanie na drzewo DOM z użyciem addEventListener*/
+			window.addEventListener('DOMContentLoaded', init, false);
+			function init() {
+				var zielonyKolor = 'green';
+				var infoDiv = document.getElementById('infoDiv');
+				var oryginalnyKolor = infoDiv.style.backgroundColor;
+				infoDiv.addEventListener('mouseover', function() {
+					infoDiv.style.backgroundColor = zielonyKolor;
+				}, false);
+				infoDiv.addEventListener('mouseout', function() {
+					infoDiv.style.backgroundColor = oryginalnyKolor;
+				}, false);
+			}
+		</script>
+	</head>
+	<body>
+		<script type="text/javascript">
+			/* Lista typowych zdarzeń
+				Zdarzenia związane z oknem i dokumentem
+					load Przeglądarka zakończy ładowanie strony lub ramki. (body, frameset)
+					pagehide Strona jest ukrywana (HTML5). (body, frameset)
+					pageshow Strona jest pokazywana (HTML5). (body, frameset)
+					resize Zmiana rozmiaru okna. (body, frameset)
+					unload Przeglądarka usuwa bieżący dokument. (body, frameset)
+				Zdarzenia związane z elementami interfejsu
+					blur Element traci fokus. (większość elementów strony)
+					change Element traci fokus i jednocześnie zmienia się wartość zawarta w elemencie. (input, select, textarea)
+					contextmenu Zostało wywołane menu kontekstowe (HTML5). (większość elementów strony)
+					focus Element otrzymuje fokus. (większość elementów strony)
+					select Zaznaczanie fragmentu tekstu. (input (text, textarea))
+					reset Resetowanie formularza (nie występuje w HTML5). (form)
+					submit Wysyłanie formularza. (form)
+				Zdarzenia związane z obsługą myszy
+					click Element został kliknięty. (większość elementów strony)
+					dblclick Element został dwukrotnie kliknięty. (większość elementów strony)
+					drag Element jest przeciągany (HTML5). (większość elementów strony)
+					drop Element został upuszczony (HTML5). (większość elementów strony)
+					mousedown Klawisz myszy został naciśnięty nad elementem. (większość elementów strony)
+					mousemove Kursor myszy jest przesuwany nad elementem. (większość elementów strony)
+					onmouseout Kursor myszy opuścił obszar elementu. (większość elementów strony)
+					onmouseover Kursor myszy wszedł w obszar elementu. (większość elementów strony)
+					onmouseup Klawisz myszy został zwolniony nad elementem. (większość elementów strony)
+				Zdarzenia związane z obsługą klawiatury
+					keydown Klawisz klawiatury został naciśnięty. (większość elementów strony)
+					keypress Klawisz klawiatury został naciśnięty i puszczony. (większość elementów strony)
+					keyup Klawisz klawiatury został puszczony. (większość elementów strony)
+				Zdarzenia związane z obsługą mediów
+					canplay Istnieje wystarczająca ilość danych do rozpoczęcia odtwarzania (HTML5). (elementy medialne)
+					loadeddata Dane zostały załadowane (HTML5). (elementy medialne)
+					pause Odtwarzanie zostało zatrzymane (HTML5). (elementy medialne)
+					play Plik gotowy do rozpoczęcia odtwarzania (HTML5). (elementy medialne)
+					playing Rozpoczęło się odtwarzanie (HTML5). (elementy medialne)
+			*/
+		</script>
+		<script type="text/javascript">
+			/* Wybrane właściwości obiektu zdarzenia 
+				altKey Ma wartość true, gdy został wciśnięty klawisz Alt.
+				button Wskazuje, który przycisk myszy został wciśnięty.
+				clientX Zawiera współrzędną x kursora myszy (względem bieżącego okna).
+				clientY Zawiera współrzędną y kursora myszy (względem bieżącego okna).
+				ctrlKey Ma wartość true, gdy został wciśnięty klawisz Ctrl.
+				keyCode Zawiera kod wciśniętego klawisza.
+				shiftKey Ma wartość true, gdy został wciśnięty klawisz Shift.
+			*/
+		</script>
+		<button onclick="alert('Pierwszy przycisk został kliknięty')">Pierwszy przycisk</button>
+		<button onclick="btn2Click();">Drugi przycisk</button>
+		<button id="btn3">Trzeci przycisk</button>
+		<script type="text/javascript">
+			/* Użycie atrybutów znaczników HTML */
+			function btn2Click() {
+				alert('Drugi przycisk został kliknięty');
+			}
+			
+			var btn3 = document.getElementById('btn3');
+			btn3.onclick = function() {
+				alert('Trzeci przycisk został kliknięty');
+			}
+		</script>
+		<div id="infoDiv">Ten tekst zostanie zmieniony przez skrypt</div>
+		<div id="clickDiv">Kliknij mnie!</div>
+		<script type="text/javascript">
+			/* Wiele procedur obsługi dla jednego zdarzenia */
+			window.addEventListener('DOMContentLoaded', function() {
+				var infoDiv = document.getElementById('clickDiv');
+				infoDiv.addEventListener('click', click1, false);
+				infoDiv.addEventListener('click', click2, false);
+			}, false);
+			function click1() {
+				this.style.color = 'yellow';
+			}
+			function click2() {
+				this.style.backgroundColor = 'red';
+			}
+		</script>
+		<div id="alertDiv" onclick="click1();">Zgłoś Alert</div>
+		<script type="text/javascript">
+			/* Kolejność wykonywanie procedur obsługi */
+			window.addEventListener('DOMContentLoaded', function() {
+				var alertDiv = document.getElementById('alertDiv');
+				alertDiv.addEventListener('click', click2, false);
+				alertDiv.addEventListener('click', click3, false);
+				alertDiv.onclick = click4; // po zakomentowaniu wywołany zostanie click1 jako pierwszy
+			}, false);
+			function click1() { alert('1'); }
+			function click2() { alert('2'); }
+			function click3() { alert('3'); }
+			function click4() { alert('4'); }
+		</script>
+		<div>
+			<span id="removeDiv" onclick="alert('alert');">Tekst z usuniętym zdarzeniem</span>
+			<button id="button1">Dodaj procedurę obsługi</button>
+			<button id="button2">Usuń procedurę obsługi</button>
+		</div>
+		<script type="text/javascript">
+			/* Usuwanie procedur obsługi */
+			var counter = 0;
+			window.addEventListener('DOMContentLoaded', function() {
+				document.getElementById('removeDiv').onclick = null;
+				document.getElementById('button1').onclick = button1Click;
+				document.getElementById('button2').onclick = button2Click;
+			}, false);
+			function button1Click() {
+				document.getElementById('removeDiv').addEventListener('click', removeDivClick, false);
+			}
+			function button2Click() {
+				document.getElementById('removeDiv').removeEventListener('click', removeDivClick);
+				counter = 0;
+			}
+			function removeDivClick() {
+				this.innerHTML += counter++;
+			}
+		</script>
+		<div id="mouseDiv"></div>
+		<script type="text/javascript">
+			/* Współrzędne kursora oraz ostatniego kliknięcia myszy */
+			var lastClickX = '-', lastClickY = '-';
+			var lastPosX = '-', lastPosY = '-';
+			window.addEventListener('DOMContentLoaded', function() {
+				document.addEventListener('mousemove', mouseMove);
+				document.addEventListener('mousedown', mouseDown);
+				refreshMouseDiv();
+			}, false);
+			function mouseMove(evt) {
+				lastPosX = evt.clientX;
+				lastPosY = evt.clientY;
+				refreshMouseDiv();
+			}
+			function mouseDown(evt) {
+				lastClickX = evt.clientX;
+				lastClickY = evt.clientY;
+				refreshMouseDiv();
+			}
+			function refreshMouseDiv() {
+				var str = "Ostatnie kliknięcie x=" + lastClickX + ", y=" + lastClickY + "<br />";
+				str += "Bieżące współrzędne x=" + lastPosX + ", y=" + lastPosY;
+				document.getElementById('mouseDiv').innerHTML = str;
+			}
+		</script>
+		<div id="keyDiv"></div>
+		<script type="text/javascript">
+			/* Odczyt znaków wprowadzonych na klawiaturze */
+			window.addEventListener('DOMContentLoaded', function() {
+				document.addEventListener('keydown', keyDown);
+			}, false);
+			function keyDown(evt) {
+				var str = 'Kod klawisza: ' + evt.keyCode + '<br />';
+				str += 'Znak: ' + String.fromCharCode(evt.keyCode) + '<br />';
+				str += 'Klawisze funkcyjne: ';
+				str += evt.altKey ? '[Alt]' : '';
+				str += evt.ctrlKey ? '[Ctrl]' : '';
+				str += evt.shiftKey ? '[Shift]' : '';
+				document.getElementById('keyDiv').innerHTML = str;
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>Funkcje</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			function wyswietl() {
+				document.write("Instrukcja document.write z wnętrza funkcji.");
+			}
+			wyswietl();
+			
+			function dodaj(wartosc1, wartosc2) {
+				if (wartosc1 == undefined || wartosc2 == undefined) {
+					return;
+				}
+				
+				var wynik = wartosc1 + wartosc2;
+				return wynik;
+			}
+			var wartosc = dodaj(11, 21);
+			document.write("Wynikiem dodawania 11 + 21 jest " + wartosc + ".");
+			
+			var zmGlob1;
+			zmGlob2 = 0;
+			function func1() {
+				liczbaGlobalna = 1; // zmienna globalna
+				document.write("Wartość zmiennej w funkcji func1: " + liczbaGlobalna);
+			}
+			function func2() {
+				document.write("Wartość zmiennej w funkcji func2: " + liczbaGlobalna);
+			}
+			//func2(); // Nieprawidłowo. Nie ma jeszcze zmiennej liczbaGlobalna.
+			//document.write("Wartość zmiennej poza funkcjami(1): " + liczbaGlobalna); // Nieprawidłowo. Nie ma jeszcze zmiennej liczbaGlobalna.
+			func1();// W tym miejscu powstała zmienna liczbaGlobalna.
+			document.write("<br />");
+			func2();
+			document.write("<br />");
+			document.write("Wartość zmiennej poza funkcjami: " + liczbaGlobalna);
+			
+			var func3 = func2;
+			func3();
+			var func4 = function() {}
+		</script>
+	</body>
+</html>

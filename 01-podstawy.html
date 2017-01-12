@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<script type="text/javascript" src="skrypty/podstawy.js" charset="utf-8">
+		</script>
+		<title>Skrypt wewnętrzny i zewnętrzny w sekcji head i body</title>
+	</head>
+	<body>
+		<p>
+			<script type="text/javascript">
+				// Tutaj można umieścić kod drugiego skryptu w sekcji body
+				alert("ciąg <b>znaków</b> do wyświetlenia");
+				document.write("tekst <b>pogrubiony</b>");
+				console.log("dane do wyświetlenia w konsoli");
+			</script>
+			<noscript>
+				<p>Twoja przeglądarka nie obsługuje skryptów lub obsługa została wyjączona</p>
+			</noscript>
+		</p>
+	</body>
+</html>

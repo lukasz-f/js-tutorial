@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>Obsługa interfejsu użytkownika</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			/*  Wybrane właściwości elementów witryny
+				accessKey Określa klawisz pozwalający na dostęp do elementu. (większość elementów strony)
+				checked Określa, czy dany element jest zaznaczony. (checkbox, radio)
+				defaultChecked Zawiera wartość domyślną atrybutu checked. (checkbox, radio)
+				cols Określa szerokość pola tekstowego. (textarea)
+				defaultValue Pobiera lub ustala wartość domyślną elementu. (password, text, textarea)
+				disabled Określa, czy dany element ma być włączony. (większość elementów strony)
+				form Zawiera odniesienie do formularza, w którym znajduje się dany element. (elementy formularza)
+				maxLength Określa maksymalną liczbę znaków w polu tekstowym. (text)
+				length Zawiera liczbę opcji zawartych na liście. (select)
+				multiple Określa, czy lista jest listą wielokrotnego wyboru. (select)
+				name Określa nazwę elementu. (większość elementów strony)
+				readOnly Określa, czy pole tekstowe ma być polem tylko do odczytu. (password, text, textarea)
+				rows Określa liczbę wierszy pola tekstowego. (textarea)
+				selectedIndex Określa indeks aktywnej opcji na liście. (select)
+				size Określa rozmiar pola tekstowego bądź listę widocznyc elementów na liście. (text, select)
+				tabIndex Określa indeks elementu używany przy przemieszczaniu się po elementach za pomocą klawisza Tab. (większość elementów strony)
+				value Określa wartość elementu (atrybut value). (elementy formularza)
+			*/
+		</script>
+		<input type="checkbox" id="chb1" value="opt1" checked>Opcja nr 1 <!-- html style -->
+		<input type="checkbox" id="chb2" value="opt2" checked="checked" />Opcja nr 2 <!-- xhtml style -->
+		<input type="checkbox" id="chb3" value="opt3"/><label for="chb3">Opcja nr 3</label>
+		<button id="chbButton">Wyświetl</button>
+		<div id="chbInfoDiv"></div>
+		<script type="text/javascript">
+			/* Określanie stanu pól wyboru typu checkbox 
+				<input type="checkbox" name="nazwa" value="wartość" [checked="checked"] [disabled="disabled"]/>
+			*/
+			window.addEventListener('DOMContentLoaded', init, false);
+			function init() {
+				document.getElementById('chbButton').addEventListener('click', chbButtonClick, false);
+			}
+			function chbButtonClick() {
+				var infoDiv = document.getElementById('chbInfoDiv');
+				var chb1 = document.getElementById('chb1');
+				var chb2 = document.getElementById('chb2');
+				var chb3 = document.getElementById('chb3');
+				var str = 'Zaznaczone elementy to:<br/>';
+				if (chb1 && chb1.checked) { str += chb1.value + '<br/>'; }
+				if (chb2 && chb2.checked) { str += chb2.value + '<br/>'; }
+				if (chb3 && chb3.checked) { str += chb3.value + '<br/>'; }
+				infoDiv.innerHTML = str;
+			}
+		</script>
+		<input type="radio" id="rb1" name="grupa1" value="opt1" checked="checked" />Opcja nr 1 <!-- xhtml style -->
+		<input type="radio" id="rb2" name="grupa1" value="opt2">Opcja nr 2 <!-- html style -->
+		<input type="radio" id="rb3" name="grupa1" value="opt3" /><label for="rb3">Opcja nr 3</label>
+		<button id="rbButton">Wyświetl</button>
+		<div id="rbInfoDiv"></div>
+		<script type="text/javascript">
+			/* Wzajemnie wykluczające się pola wyboru
+				<input type="radio" name="nazwa" value="wartość" [checked="checked"] [disabled="disabled"]/>
+			*/
+			window.addEventListener('DOMContentLoaded', init, false);
+			function init() {
+				document.getElementById('rbButton').addEventListener('click', rbButtonClick, false);
+			}
+			function rbButtonClick() {
+				var infoDiv = document.getElementById('rbInfoDiv');
+				var inputs = document.getElementsByTagName('input');
+				var str = 'Zaznaczone elementy to: ';
+				for (var i = 0; i < inputs.length; ++i) {
+					if (inputs[i].name == 'grupa1' && inputs[i].checked) {
+						str += inputs[i].value;
+					}
+				}
+				infoDiv.innerHTML = str;
+			}
+		</script>
+		<input type="text" id="tf1" size="25" value="Przykładowy tekst" />
+		<button id="tfButton">Wyświetl</button>
+		<div id="tfInfoDiv"></div>
+		<script type="text/javascript">
+			/* Korzystanie z pola tekstowego
+				<input type="text" name="nazwa" value="wartość" size="rozmiar" maxlength="maksymalna długość" 
+						[readonly="readonly"] [disabled="disabled"] />
+			*/
+			window.addEventListener('DOMContentLoaded', init, false);
+			function init() {
+				document.getElementById('tfButton').addEventListener('click', tfButtonClick, false);
+			}
+			function tfButtonClick() {
+				var str = "W polu znajduje się nasępujący tekst: ";
+				str += document.getElementById('tf1').value;
+				document.getElementById('tfInfoDiv').innerHTML = str;
+			}
+		</script>
+		<label for="ta1">Przeszukiwany tekst:</label>
+		<textarea id="ta1" rows="10" cols="35"></textarea>
+		<label for="tf2">Szukany ciąg znaków:</label>
+		<input type="text" id="tf2" size="35" value="">
+		<button id="taButton">Szukaj</button>
+		<div id="taInfoDiv"></div>
+		<script type="text/javascript">
+			/* Korzystanie z rozszerzonego pola tekstowego
+				<textarea name="nazwa pola" rows="wiersze" cols="kolumny" [readonly="readonly"] [disabled="disabled"]>pierwotny tekst</textarea> 
+			*/
+			window.addEventListener('DOMContentLoaded', init, false);
+			function init() {
+				document.getElementById('taButton').addEventListener('click', taButtonClick, false);
+			}
+			function taButtonClick() {
+				var ta1text = document.getElementById('ta1').value;
+				var tf2text = document.getElementById('tf2').value;
+				var amount = countAmount(ta1text, tf2text);
+				var str = 'Ciąg "' + tf2text + '" wystąpił w tekście "' + ta1text + '" ' + amount + ' ' + (amount == 1 ? 'raz' : 'razy');
+				document.getElementById('taInfoDiv').innerHTML = str;
+			}
+			function countAmount(string, substring) {
+				var amount = 0;
+				if (string && substring) {
+					var fromIndex = 0;
+					var occurrenceIndex = -1;
+					while ((occurrenceIndex = string.indexOf(substring, fromIndex)) != -1) {
+						amount++;
+						fromIndex = occurrenceIndex + substring.length;
+					}
+				}
+				return amount;
+			}
+		</script>
+		<select id="sl1">
+			<option value="-" selected>Wybierz jedną z opcji</option>
+			<option value="cwjav4" disabled>Java. Ćwiczenia praktyczne. Wydanie IV</option>
+			<option value="cwjque">jQuery. Ćwiczenia praktyczne</option>
+			<option value="cwjs">JavaScript. Ćwiczenia praktyczne. Wydanie III</option>
+			<option value="cwsql">SQL. Ćwiczenia praktyczne. Wydanie III</option>
+		</select>
+		<div id="slInfoDiv"></div>
+		<script type="text/javascript">
+			/* Lista rozwijana
+				<select name="nazwa" [size="rozmiar"] [multiple="multiple"] [disabled="disabled"]>
+					<option value="wartoś 1" [selected] [disabled]>opcja1</option>
+					<option value="wartoś 2" [selected] [disabled]>opcja2</option>
+					<!-- dalsze elementy option -->
+					<option value="wartoś N" [selected] [disabled]>opcjaN</option>
+				</select>
+			*/
+			window.addEventListener('DOMContentLoaded', init, false);
+			function init() {
+				document.getElementById('sl1').addEventListener('change', sl1change, false);
+			}
+			function sl1change() {
+				var str = '';
+				if (this.selectedIndex != 0) {
+					var selectedOption = this.options[this.selectedIndex];
+					str = 'Wybrana opcja to \'' + selectedOption.text + '\' ' 
+							+ '(kod: ' + selectedOption.value + ', indeks: ' + selectedOption.index 
+							+ ', wybrany: ' + selectedOption.selected + ')';
+				}
+				document.getElementById('slInfoDiv').innerHTML = str;
+			}
+		</script>
+	</body>
+</html>

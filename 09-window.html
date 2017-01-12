@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>Współpraca z przeglądarką - Obiekt window</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			/* Wybrane własciwosci obiektu window
+				closed Ustawiona na true oznacza, że okno zostało zamknięte.
+				defaultStatus Domyślny tekst wyświetlany na pasku stanu.
+				frames Tablica zawierająca odniesienia do ramek danego okna.
+				innerHeight Wewnętrzna wysokość obszaru okna.
+				innerWidth Wewnętrzna szerokość obszaru okna.
+				length Liczba ramek potomnych zawartych w oknie.
+				name Nazwa bieżącego okna.
+				opener Jeżeli bieżące okno zostało otwarte za pomocą metody open, właściwość opener zawiera odniesienie do okna źródłowego.
+				outerHeight Zewnętrzna wysokość obszaru okna (z uwzględnieniem ramki okna i pasków narzędziowych).
+				outerWidth Zewnętrzna szerokość obszaru okna (z uwzględnieniem ramki okna i pasków narzędziowych).
+				pageXOffset Przesunięcie bieżącej strony w poziomie względem lewego górnego rogu okna (szerokość zasłoniętego obszaru).
+				pageYOffset Przesunięcie bieżącej strony w pionie względem lewego górnego rogu okna (wysokość zasłoniętego obszaru).
+				parent Odniesienie do okna źródłowego.
+				self Odniesienie do bieżącego aktywnego okna lub ramki.
+				status Tekst wyświetlany na pasku stanu.
+				top Odniesienie do okna znajdującego się najwyżej w hierarchii.
+			*/
+		</script>
+		<script type="text/javascript">
+			/* Wyswietla informacje o rozmiarach okna przeglądarki */
+			document.write('Wysokosc wewnetrzna: ' + window.innerHeight + '<br />');
+			document.write('Szerokosc wewnetrzna: ' + window.innerWidth + '<br />');
+			document.write('Wysokosc zewnetrzna: ' + window.outerHeight + '<br />');
+			document.write('Szerokosc zewnetrzna: ' + window.outerWidth + '<br />');
+		</script>
+		<script type="text/javascript">
+			/* Wybrane metody obiektu window
+				alert(arg) Wyświetla okno dialogowe zawierające tekst określony przez argument arg.
+				blur() Usuwa fokus z bieżącego okna.
+				clearInterval(id) Zatrzymuje zegar o identyfikatorze id uruchomiony przez wywołanie setInterval.
+				clearTimeout(id) Zatrzymuje zegar o identyfikatorze id uruchomiony przez wywołanie setTimeout.
+				close() Zamyka okno przeglądarki.
+				confirm(argumenty) Wyświetla okno dialogowe zawierające przyciski OK i Anuluj (Cancel).
+				focus() Ustawia fokus dla bieżącego okna.
+				moveBy(px, py) Przesuwa okno przeglądarki o zadaną liczbę pikseli w pionie i (lub) w poziomie.
+				moveTo(px, py) Przesuwa okno tak, aby jego lewy górny róg znalazł się w punkcie wskazywanym przez argumenty px i py.
+				open(URL, nazwa[, właściwości[, historia]]) Otwiera nowe okno o nazwie nazwa z dokumentem wskazywanym przez URL. 
+						Wygląd okna określa argument właściwości.
+				print() Drukuje zawartość okna.
+				prompt(str[, defStr]) Wyświetla okno dialogowe z tekstem zdefiniowanym przez argument str, przyciskami OK i Anuluj (Cancel) 
+						oraz polem tekstowym, umożliwiające wprowadzenie danych przez użytkownika.
+				resizeBy(sW, sH) Zmienia rozmiary okna o zadaną liczbę pikseli w poziomie (sW) i w pionie (sH).
+				resizeTo(sW, sH) Zmienia rozmiary okna. Parametr sW określa szerokość, a sH — wysokość.
+				scrollBy(px, py) Przesuwa zawartość okna o px pikseli w poziomie i py pikseli w pionie. 
+						Metoda użyteczna tylko w przypadku, kiedy zawartość dokumentu nie mieści się w oknie.
+				scrollTo(x, y) Przesuwa zawartość okna do współrzędnych x, y.
+				setInterval(exp, mtime) Przetwarza wyrażenie (lub wywołuje funkcję) wskazane przez exp co mtime milisekund.
+				setTimeout(exp, mtime) Przetwarza wyrażenie (lub wywołuje funkcję) exp po czasie mtime milisekund.
+			*/
+		</script>
+		<script type="text/javascript">
+			/* Potwierdzenie wykonania operacji */
+			var wynik = confirm('Czy na pewno mam wyswietlić wynik meczu?');
+			if (wynik) {
+				document.write('Wynikiem meczu jest 1:0');
+			} else {
+				document.write('Wybrano rezygnacje z wyswietlenia wyniku.');
+			}
+		</script>
+		<script type="text/javascript">
+			/* Korzystanie z timerów */
+			setTimeout('alert(\'Upłynęło 5 sekund od załadowania strony\')', 5000);
+		</script>
+		<script type="text/javascript">
+			/* Wywołania cykliczne */
+			var i = 1;
+			var timerId;
+			function zmienStatus() {
+				document.write(i++ + ' ');
+				if (i > 10) {
+					clearInterval(timerId);
+				}
+			}
+			timerId = setInterval('zmienStatus()', 1000);
+		</script>
+		<script type="text/javascript">
+			/* Wybrane właściwości nowo otwieranych okien 
+				height Wysokość obszaru okna zawierającego treść strony, włącznie z wysokością poziomego paska przewijania 
+						(liczby całkowite, minimalna wartość: 100)
+				left Współrzędna x lewego górnego rogu okna (liczby całkowite)
+				location Określa, czy ma być widoczny pasek adresu (yes, no, 1, 0)
+				menubar Określa, czy ma być widoczny pasek menu (yes, no, 1, 0)
+				resizable Określa, czy wymiary okna mogą być zmieniane (yes, no, 1, 0)
+				scrollbars Określa, czy w przypadku, kiedy dokument nie mieści się w oknie, mają być wyświetlane paski 
+						przewijania (yes, no, 1, 0)
+				status Określa, czy ma być widoczny pasek stanu (yes, no, 1, 0)
+				toolbar Określa, czy ma być widoczny pasek narzędziowy (yes, no, 1, 0)
+				top Współrzędna y lewego górnego rogu okna (liczby całkowite)
+				width Szerokość obszaru okna zawierającego treść strony, włącznie z wysokością pionowego paska przewijania 
+						(liczby całkowite, minimalna wartość: 100)
+			*/
+		</script>
+		<script type="text/javascript">
+			/* Wybrane własciwosci nowo otwieranych okien */
+			window.open("http://helion.pl", "okno2", "width=800,height=400,left=0,top=0,toolbar=yes,location=yes");
+		</script>
+	</body>
+</html>

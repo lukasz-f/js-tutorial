@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>Elementy języka</title>
+	</head>
+	<body>
+		<p>
+			<script type="text/javascript">
+				// Komentarz
+				/* Komentarz */
+			</script>
+			<script type="text/javascript">
+				/* Typy danych:
+					- liczbowe: 123, -123, 012, -024, 0xFF, -0x0f, 1.1, -1.1, 0.1E2, 1.0E-2
+					- łańcuchowe: \b, \n, \r, \f, \t, \", \', \\, "tekst", 'text'
+					- logiczne: true, false
+					- obiektowe
+					- typy specjalne: null (wartość pusta, głównie dla obiektów), 
+										undefined (wartość niezdefiniowana, niezainicjowana zmienna, zmienna której przypisano wartość undefined, 
+													nieistniejąca właściwość obiektu)
+				*/
+				var zmienna1 = "Mój komputer";
+				var zmienna2 = 2;
+				document.write(zmienna1 + " ma dysk o pojemności " + zmienna2 + " TB.<br />");
+			</script>
+			<script type="text/javascript">
+				/* Operatory:
+					- arytmetyczne: *, /, +, -, %, ++, --
+					- porównywanie: ==(true jeśli są równe), !=(true jeśli są różne), 
+									===(true jeśli są tego samego typu i są równe), !==(true jeśli są różne bądź różnych typów), >, <, >=, <=
+					- bitowe: &, |, ~, ^, >>, <<, >>>
+					- logiczne: &&, ||, !
+					- przypisania: =, +=, -=, *=, /=, %=, <<=, >>=, >>>=, &=, |=, ^=
+					- pozostałe: [, ], (, ), new, typeof, delete, instanceof, ?:
+				*/
+				var pierwszaLiczba = 2 * 8;
+				var drugaLiczba = pierwszaLiczba + 5;
+				var trzeciaLiczba = pierwszaLiczba - drugaLiczba;
+				var x = ++pierwszaLiczba;
+				var y;
+				document.write(x);
+				document.write(' ');
+				document.write(y);
+				y = x++;
+				document.write(x);
+				document.write(' ');
+				document.write(y);
+				document.write('<br />');
+			</script>
+			<script type="text/javascript">
+				/* Operator typeof */
+				var tablica = [0, '1', new Date(), function() {}];
+				tablica.fun = function() {}
+				for (var indeks in tablica) {
+					document.write('typeof tablica[' + indeks + '] = ' + typeof tablica[indeks] + '<br />');
+				}
+			</script>
+		</p>
+	</body>
+</html>

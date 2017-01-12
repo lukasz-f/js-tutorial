@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>Obiekty i funkcje globalne - Matematyka</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			/* Właściwości obiektu Math
+				E Stała Eulera Math.E ok. 2,718
+				LN2 Logarytm naturalny z 2
+				LN10 Logarytm naturalny z 10
+				LOG2E Logarytm o podstawie 2 ze stałej e
+				LOG10E Logarytm o podstawie 10 ze stałej e
+				PI Liczba pi
+				SQRT1_2 Pierwiastek kwadratowy z 0,5
+				SQRT2 Pierwiastek kwadratowy z 2
+			*/
+			/* Metody obiektu Math
+				abs(wartość) Zwraca wartość bezwzględną parametru wartość.
+				acos(wartość) Zwraca wartość arcus cosinus parametru wartość.
+				asin(wartość) Zwraca wartość arcus sinus parametru wartość.
+				atan(wartość) Zwraca wartość arcus tangens parametru wartość.
+				atan2(x, y) Zwraca wartość kąta pomiędzy osią OX a punktem wyznaczanym przez parametry x i y.
+				ceil(wartość) Zwraca najmniejszą liczbę całkowitą większą od parametru wartość lub mu równą (zaokrąglanie w górę).
+				cos(wartość) Zwraca wartość cosinusa parametru wartość.
+				exp(wartość) Zwraca wartość wynikającą z podniesienia stałej Eulera do potęgi wskazywanej przez parametr wartość (odpowiada to działaniu ewartość).
+				floor(wartość) Zwraca największą liczbę całkowitą mniejszą od parametru wartość lub mu równą (zaokrąglanie w dół).
+				log(wartość) Zwraca logarytm naturalny (o podstawie równej stałej Eulera) parametru wartość.
+				max(w1, w2[,…,wN]) Zwraca największą z wartości przekazanych w postaci argumentów.
+				min(w1, w2[,…,wN]) Zwraca najmniejszą z wartości przekazanych w postaci argumentów.
+				pow(x, y) Zwraca wartość x podniesioną do potęgi y (jest to odpowiednik działania xy).
+				random() Zwraca wartość pseudolosową z zakresu 0 – 1.
+				round(wartość) Zwraca wartość wynikającą z zaokrąglenia parametru wartość do najbliższej liczby całkowitej.
+				sin(wartość) Zwraca wartość sinusa parametru wartość.
+				sqrt(wartość) Zwraca pierwiastek kwadratowy parametru wartość.
+				tan(wartość) Zwraca wartość tangensa parametru wartość.
+			*/
+		</script>
+		<script type="text/javascript">
+			/* Nazwy i wartości stałych udostępnianych przez obiekt Math */
+			document.write('E = ' + Math.E + '<br />');
+			document.write('LN2 = ' + Math.LN2 + '<br />');
+			document.write('LN10 = ' + Math.LN10 + '<br />');
+			document.write('LOG2E = ' + Math.LOG2E + '<br />');
+			document.write('LOG10E = ' + Math.LOG10E + '<br />');
+			document.write('PI = ' + Math.PI + '<br />');
+			document.write('SQRT1_2 = ' + Math.SQRT1_2 + '<br />');
+			document.write('SQRT2 = ' + Math.SQRT2 + '<br />');
+		</script>
+		<script type="text/javascript">
+			/* Operacje matematyczne pow i sqrt */
+			document.write('pow(2, 8) = ' + Math.pow(2, 8) + '<br />');
+			document.write('pow(9, -2) = ' + Math.pow(9, -2) + '<br />');
+			document.write('pow(2.4, 3.2) = ' + Math.pow(2.4, 3.2) + '<br />');
+			document.write('pow(-3, 2) = ' + Math.pow(-3, 2) + '<br />');
+			document.write('pow(-3, -2) = ' + Math.pow(-3, -2) + '<br />');
+			document.write('pow(-3.2, -2.4) = ' + Math.pow(-3.2, -2.4) + '<br />');
+			document.write('pow(256, 2199456) = ' + Math.pow(256, 2199456) + '<br />');
+			document.write('sqrt(2) = ' + Math.sqrt(2) + '<br />');
+			document.write('sqrt(-2) = ' + Math.sqrt(-2) + '<br />');
+			document.write('pow(sqrt(2), 2) = ' + Math.pow(Math.sqrt(2), 2) + '<br />');
+			document.write('pow(sqrt(4), 2) = ' + Math.pow(Math.sqrt(4), 2) + '<br />');
+		</script>
+	</body>
+</html>
